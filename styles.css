@@ -1,0 +1,436 @@
+body {
+  background-color: #1a2d2f; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+}
+
+/* --- TOP HEADER NAVIGATION CONTAINER --- */
+.navbar {
+  background-color: #4a5a60;
+  padding: 12px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid #0091ff;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand-logo-placeholder {
+  width: 55px;
+  height: 35px;
+  background-color: #e0e0e0;
+  border-radius: 2px;
+}
+.brand-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+.brand-sub {
+  font-size: 12px;
+  color: #cfd8dc;
+}
+.menu-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+.menu-icon span {
+  width: 28px;
+  height: 3px;
+  background-color: #ffffff;
+  border-radius: 2px;
+}
+
+/* --- BANNER HEADER TYPOGRAPHY CONTENT --- */
+.main-header {
+  max-width: 1000px;
+  margin: 40px auto 20px auto;
+  padding: 0 20px;
+}
+.main-header .title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.main-header .subtitle {
+  color: #a2b2b4;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* --- STEPPER WORKFLOW GRAPHIC --- */
+.stepper-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+  margin: 0 auto 40px auto;
+}
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90px;
+}
+.circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #274042;
+  color: #799598;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+.label {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #799598;
+}
+.line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #405c5f;
+  margin-bottom: 22px;
+}
+.step.active .circle {
+  background-color: #0091ff;
+  color: #ffffff;
+}
+.step.active .label {
+  color: #0091ff;
+}
+
+/* --- DUAL GRID SYSTEM HOOKS --- */
+.grid-container {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px 60px 20px;
+  align-items: start;
+}
+
+.main-form-panel {
+  background-color: #264244;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.sidebar-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* --- FORM CONTROL LABELS AND INPUT OVERRIDES --- */
+.form-group {
+  margin-bottom: 20px;
+}
+label {
+  display: block;
+  font-size: 14px;
+  color: #a2b2b4;
+  margin-bottom: 8px;
+}
+select, textarea, input[type="text"], input[type="email"] {
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+  background-color: #d9d9d9;
+  border: none;
+  color: #222222;
+  font-size: 14px;
+  border-radius: 4px;
+  font-family: inherit;
+}
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23444444' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+textarea {
+  height: 90px;
+  resize: none;
+}
+.char-count {
+  text-align: right;
+  font-size: 12px;
+  color: #a2b2b4;
+  margin-top: 4px;
+}
+
+/* --- LOCATION CONTEXT ELEMENTS --- */
+.input-with-icon {
+  position: relative;
+}
+.input-with-icon .loc-icon {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: 2;
+}
+.input-with-icon textarea {
+  padding-left: 35px;
+  height: 42px;
+  line-height: 20px;
+  overflow: hidden;
+}
+
+.address-fields-box {
+  background-color: #1d3335;
+  border: 1px solid #405c5f;
+  padding: 15px;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+.form-group-sub {
+  margin-bottom: 10px;
+}
+.form-group-sub label {
+  color: #799598;
+  font-size: 12px;
+}
+.form-group-sub select, .form-group-sub input {
+  background-color: #ffffff;
+  padding: 8px;
+}
+.done-btn {
+  background-color: #0091ff;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* --- COMPLAINT PRIORITY INTERACTION SCENARIOS --- */
+.priority-container {
+  display: flex;
+  gap: 10px;
+}
+.prio-btn {
+  flex: 1;
+  padding: 10px;
+  background-color: #4b5e60;
+  border: 1px solid #5a6e70;
+  color: #cfd8dc;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.prio-btn.selected {
+  background-color: #617375;
+  border-color: #819496;
+  color: #ffffff;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* --- ATTACHMENT CARD GRAPHICS --- */
+.dropzone-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #4a6264;
+  background-color: #264244;
+  border-radius: 8px;
+  padding: 30px 20px;
+  cursor: pointer;
+}
+.upload-icon {
+  font-size: 28px;
+  color: #6b8486;
+  margin-bottom: 10px;
+}
+.main-text {
+  font-size: 13px;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 0 0 6px 0;
+}
+.sub-text {
+  font-size: 12px;
+  color: #6b8486;
+  margin: 0;
+}
+.hidden-file-input {
+  display: none !important;
+}
+
+/* --- STEP 2 EXTENSION: ENVELOPE SECURE BLOCK --- */
+.info-banner {
+  background-color: #388e3c;
+  color: #ffffff;
+  padding: 15px;
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.4;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.info-banner-icon {
+  font-size: 16px;
+  margin-top: 1px;
+}
+
+/* --- STEP 3 EXTENSION: OVERVIEW SUMMARY CHECKLIST --- */
+.review-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.review-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 25px;
+}
+.review-table td {
+  padding: 15px 0;
+  border-bottom: 1px solid #365456;
+  font-size: 14px;
+  vertical-align: top;
+}
+.review-table td.field-label {
+  width: 30%;
+  font-weight: bold;
+  color: #ffffff;
+}
+.review-table td.field-value {
+  color: #cfd8dc;
+}
+.review-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* --- SCREEN ACTION PROCESSING AND ALIGNMENT CORRECTIONS --- */
+.action-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 10px;
+}
+.action-row.split {
+  justify-content: space-between;
+}
+.continue-btn, .submit-btn {
+  background-color: #0091ff;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.submit-btn {
+  background-color: #2ecc71;
+}
+.back-btn {
+  background-color: #e1bee7;
+  color: #4a148c;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* --- CONTROLLER HOOK STATE VISIBILITY ENGINE --- */
+.step-panel {
+  display: none;
+}
+.step-panel.show-view {
+  display: block;
+}
+
+/* --- SIDE PANEL CARD DETAILS DISPLAY --- */
+.info-card {
+  background-color: #264244;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+.info-card h3 {
+  margin-top: 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+.card-subtitle {
+  font-size: 13px;
+  color: #a2b2b4;
+  margin: -10px 0 15px 0;
+}
+
+/* SLA Table Elements */
+.sla-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.sla-table td {
+  padding: 12px 0;
+  border-bottom: 1px solid #365456;
+  font-size: 14px;
+  color: #cfd8dc;
+}
+.sla-table tr:last-child td {
+  border-bottom: none;
+}
+.sla-table .time-col {
+  text-align: right;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* Contact Anchor Configurations */
+.contact-group {
+  margin-bottom: 15px;
+}
+.contact-group:last-child {
+  margin-bottom: 0;
+}
+.contact-group label {
+  font-size: 12px;
+  color: #799598;
+  margin-bottom: 4px;
+}
+.emergency-link {
+  color: #ff5252;
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 14px;
+}
+.contact-link {
+  color: #0091ff;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+/* --- MASTER BOTTOM PAGE WRAP LEGAL BAR --- */
+.footer {
+  background-color: #1e3335;
+  text-align: center;
+  padding: 15px;
+  font-size: 12px;
+  color: #799598;
+  border-top: 1px solid #274042;
+}
