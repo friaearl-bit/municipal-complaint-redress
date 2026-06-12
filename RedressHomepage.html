@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Complaint Redress System</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+      <div class="navbar">
+          <div class="nav-brand">
+              <div class="brand-logo-placeholder"></div>
+              <div>
+                  <div class="brand-title">Web title</div>
+                  <div class="brand-sub">Complaint redress system</div>
+              </div>
+          </div>
+          <div class="menu-icon">
+              <span></span><span></span><span></span>
+          </div>
+      </div>
+
+      <div class="main-header">
+          <h1 class="title">Submit a complaint</h1>
+          <p class="subtitle">Use this form to report a civic issue. Your complaint will be logged into the official records and forwarded to the appropriate municipal department for review and resolution. Please provide accurate details to ensure timely action on your report.</p>
+      </div>
+   
+      <div class="stepper-container">
+          <div id="step1-indicator" class="step active">
+              <div class="circle">1</div>
+              <div class="label">Issue details</div>
+          </div>
+          <div id="line1-indicator" class="line"></div>
+          <div id="step2-indicator" class="step">
+              <div class="circle">2</div>
+              <div class="label">Contact Info</div>
+          </div>
+          <div id="line2-indicator" class="line"></div>
+          <div id="step3-indicator" class="step">
+              <div class="circle">3</div>
+              <div class="label">Review</div>
+          </div>
+      </div>
+
+      <div class="grid-container">
+          
+          <form id="complaintForm" class="main-form-panel" action="/upload-endpoint" method="POST" enctype="multipart/form-data">
+              
+              <div id="panel-step-1" class="step-panel show-view">
+                  <div class="form-group">
+                      <label for="complaintCategory">Category</label>
+                      <select id="complaintCategory" name="complaintCategory">
+                          <option value="">Select a Category...</option>
+                          <option value="Waste Management">Waste Management</option>
+                          <option value="Infrastructure & Roads">Infrastructure & Roads</option>
+                          <option value="Utilities">Utilities</option>
+                          <option value="Public Order & Zoning">Public Order & Zoning</option>
+                          <option value="Bureaucratic Delays">Bureaucratic Delays</option>
+                      </select>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="complaintSubject">Subject</label>
+                      <select id="complaintSubject" name="complaintSubject" disabled>
+                          <option value="">Brief one-line description of the issue</option>
+                      </select>
+                  </div>
+
+                  <div class="form-group">
+                       <label for="complaintDescription">Description</label>
+                       <textarea id="complaintDescription" name="complaintDescription" placeholder="provide the full detail on what the issue and when did you notice it..."></textarea>
+                       <div class="char-count" id="live-char-count">0 Char</div>
+                  </div>
+
+                  <div class="form-group address-container">
+                      <label for="address-summary">Location / Address</label>
+                      <div class="input-with-icon">
+                          <span class="loc-icon">📍</span>
+                          <textarea id="address-summary" placeholder="Location / Address" readonly></textarea> 
+                      </div>
+
+                      <div id="address-form-block" class="address-fields-box" style="display: none;">
+                          <div class="form-group-sub">
+                              <label for="barangay">Barangay</label>
+                              <select id="barangay" name="barangay">
+                                  <option value="">Select Barangay</option>
+                                  <option value="Acacia">Acacia</option>
+                                  <option value="Flores">Flores</option>
+                                  <option value="Hulo">Hulo</option>
+                              </select>
+                          </div>
+
+                          <div class="form-group-sub">
+                              <label for="Subdivision_Village">Subdivision or Village</label>
+                              <select id="Subdivision_Village" name="Subdivision_Village" disabled>
+                                  <option value="">Select Subdivision or Village</option>
+                              </select>
+                          </div>
+
+                          <div class="form-group-sub">
+                              <label for="streetName">Street Name</label>
+                              <input type="text" id="streetName" name="streetName" placeholder="e.g., Maple St.">
+                          </div>
+
+                          <div class="form-group-sub">
+                              <label for="buildingFloor">Building / Floor / Unit #</label>
+                              <input type="text" id="buildingFloor" name="buildingFloor" placeholder="e.g., 3rd Floor, Rm 302">
+                          </div>
+                          
+                          <button type="button" class="done-btn" id="closeAddressBtn">Done</button>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label>Priority</label>
+                      <div class="priority-container">
+                        <button type="button" class="prio-btn" data-value="Low">Low</button>
+                        <button type="button" class="prio-btn" data-value="Normal">Normal</button>
+                        <button type="button" class="prio-btn" data-value="High">High</button>
+                        <button type="button" class="prio-btn" data-value="Critical">Critical</button>
+                      </div>
+                      <input type="hidden" id="complaintPriority" name="priority" value="">
+                  </div>
+
+                  <div class="form-group">
+                        <label class="title-label">Attachment</label>
+                        <label for="attachment" class="dropzone-label">
+                            <span class="upload-icon">&#10514;</span>
+                            <p class="main-text">Drag & Drop photos, Documents or click the browser</p>
+                            <p class="sub-text">Max 10mb per file: jpg png pdf mp4</p>
+                            <input type="file" id="attachment" name="photo" accept="image/*" class="hidden-file-input">
+                        </label>
+                  </div>
+
+                  <div class="action-row">
+                      <button type="button" class="continue-btn" onclick="goToStep(2)">Continue ➔</button>
+                  </div>
+              </div>
+
+              <div id="panel-step-2" class="step-panel">
+                  <div class="form-group">
+                      <label for="fullName">Full Name</label>
+                      <input type="text" id="fullName" name="fullName" placeholder="Your Legal Name">
+                  </div>
+
+                  <div class="form-group">
+                      <label for="emailAddress">Email Address</label>
+                      <input type="email" id="emailAddress" name="emailAddress" placeholder="You@example.com">
+                  </div>
+
+                  <div class="form-group">
+                       <label for="contactNo">Contact No.</label>
+                       <input type="text" id="contactNo" name="contactNo" placeholder="+63 917-XXX-XXXX">
+                  </div>
+
+                  <div class="info-banner">
+                      <div class="info-banner-icon">ⓘ</div>
+                      <div>Your Contact Information is kept confidential. It is used only for complaints it is not shared by third Parties or public in any official record.</div>
+                  </div>
+
+                  <div class="action-row split">
+                      <button type="button" class="back-btn" onclick="goToStep(1)">↵ Back</button>
+                      <button type="button" class="continue-btn" onclick="goToStep(3)">Continue ➔</button>
+                  </div>
+              </div>
+
+              <div id="panel-step-3" class="step-panel">
+                  <div class="review-header">Review & Confirm</div>
+                  
+                  <table class="review-table">
+                      <tr>
+                          <td class="field-label">Case ID</td>
+                          <td class="field-value" id="review-case-id">CRS-2026-09284</td>
+                      </tr>
+                      <tr>
+                          <td class="field-label">Category</td>
+                          <td class="field-value" id="review-category">—</td>
+                      </tr>
+                      <tr>
+                          <td class="field-label">Subject</td>
+                          <td class="field-value" id="review-subject">—</td>
+                      </tr>
+                      <tr>
+                          <td class="field-label">Location</td>
+                          <td class="field-value" id="review-location">—</td>
+                      </tr>
+                      <tr>
+                          <td class="field-label">Priority</td>
+                          <td class="field-value" id="review-priority">—</td>
+                      </tr>
+                      <tr>
+                          <td class="field-label">Description</td>
+                          <td class="field-value" id="review-description">—</td>
+                      </tr>
+                      <tr>
+                          <td class="field-label">Contact</td>
+                          <td class="field-value" id="review-contact">—</td>
+                      </tr>
+                      <tr>
+                          <td class="field-label">Department</td>
+                          <td class="field-value" id="review-department">ENV - ENVIRONMENT</td>
+                      </tr>
+                  </table>
+
+                  <div class="action-row split">
+                      <button type="button" class="back-btn" onclick="goToStep(2)">↵ Back</button>
+                      <button type="submit" class="submit-btn">Continue ➔</button>
+                  </div>
+              </div>
+
+          </form>
+
+          <div class="sidebar-panel">
+                <div class="info-card">
+                    <h3>Service level targets</h3>
+                    <table class="sla-table">
+                        <tr><td>Water and Sewer</td><td class="time-col">24 Hours</td></tr>
+                        <tr><td>Sanitation</td><td class="time-col">1-2 Days</td></tr>
+                        <tr><td>Street Lighting</td><td class="time-col">3-5 Days</td></tr>
+                        <tr><td>Road or Paving</td><td class="time-col">5-10 Days</td></tr>
+                        <tr><td>Park & Rec</td><td class="time-col">7-14 Days</td></tr>
+                    </table>
+                </div>
+                
+                <div class="info-card">
+                    <h3>Emergency Contacts</h3>
+                    <p class="card-subtitle">For urgent public issue</p>
+                    
+                    <div class="contact-group">
+                        <label>Police / Fire / EMS</label>
+                        <a href="tel:911" class="emergency-link">911</a>
+                    </div>
+
+                    <div class="contact-group">
+                        <label>Non-Emergency</label>
+                        <a href="tel:+63285319001" class="contact-link">(02) 8531-9001 to 10 local 201</a>
+                    </div>
+
+                    <div class="contact-group">
+                        <label>City Hotline 24/7</label>
+                        <a href="tel:+639178998727" class="contact-link">0917-899-8727 (USAP)</a>
+                    </div>
+                </div>
+          </div>
+
+      </div> 
+
+      <div class="footer">
+          © Web title · Municipal Complaint redress system · All complaints are public record
+      </div>
+
+      <script src="script.js"></script>
+  </body>
+</html>
