@@ -1,3 +1,13 @@
+## Website Templates
+
+Repository: https://github.com/learning-zone/website-templates/
+
+sample_site: [live example](https://learning-zone.github.io/website-templates/sample_site/)
+
+sb-admin-2: [live example](https://learning-zone.github.io/website-templates/sb-admin-2)
+
+---
+
 # {project_name}
 
 <div align="center">
