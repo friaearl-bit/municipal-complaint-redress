@@ -166,7 +166,13 @@ html(lang="en")
           #profileDropdown.profile-dropdown
             button.profile-btn(type="button")
               //- .profile-avatar JD
-              .profile-avatar= user.name[0] + user.name[1]
+              //- .profile-avatar= user.name[0] + user.name[1]
+              if user && user.name && user.name.length >= 2
+                .profile-avatar= user.name[0] + user.name[1]
+              else if user && user.name
+                .profile-avatar= user.name[0]
+              else
+                .profile-avatar ?
               .profile-info
                 //- span.profile-name John Doe
                 //- span.profile-role Administrator
@@ -175,7 +181,12 @@ html(lang="en")
               i.dropdown-arrow(data-lucide="chevron-down")
             .dropdown-menu
               .dropdown-header
-                .avatar= user.name[0] + user.name[1]
+                if user && user.name && user.name.length >= 2
+                  .avatar= user.name[0] + user.name[1]
+                else if user && user.name
+                  .avatar= user.name[0]
+                else
+                  .avatar ?
                 //- .name John Doe
                 .name= user.name
                 //- .email john.doe@tugon.gov.ph

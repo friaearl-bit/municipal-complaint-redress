@@ -163,14 +163,27 @@ block content
             form(method="POST" action=`/complaints/${complaint.id}/assign`)
 
               table.detail-table
+                .form-group
 
-                tr
-                  th Priority
-                  td= complaint.priority
+                  label(for="priority") Priority
+                  select#priority(name="priority")
+                    each prio in priorities
+                      option(value=prio selected=prio === complaint.priority)= prio
 
-                tr
-                  th Status
-                  td= complaint.status
+                .form-group
+
+                  label(for="status") Status
+                  select#status(name="status")
+                    each status in statuses
+                      option(value=status selected=status === complaint.status)= status
+
+                //- tr
+                //-   th Priority
+                //-   td= complaint.priority
+
+                //- tr
+                //-   th Status
+                //-   td= complaint.status
                   
               .form-group
                 label Department
