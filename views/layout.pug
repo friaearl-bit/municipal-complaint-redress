@@ -1,0 +1,214 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(
+      content="width=device-width, initial-scale=1.0" 
+      name="viewport"
+      )
+    title TUGON - Municipal Complaint Redress System
+    link(
+      type="image/x-icon" 
+      href="/images/favicon.ico" 
+      rel="icon"
+      )
+    link(
+      type="image/x-icon" 
+      href="/images/favicon.ico" 
+      rel="shortcut icon"
+      )
+    link(
+      href="/css/styles.css" 
+      rel="stylesheet"
+      )
+    link(
+      href="/css/toast.css" 
+      rel="stylesheet"
+      )
+    script(src="/js/lucide.min.js" defer)
+    script(src="/js/sidebars.js" defer)
+  body
+
+    include ./partials/modal
+
+    if toast
+      #toast-data(
+        data-type=toast.type
+        data-title=toast.title
+        data-message=toast.message
+      )
+        //- hidden
+    // OVERLAY
+    #overlay.overlay
+    // LEFT SIDEBAR (Burger Menu)
+    aside#sidebarLeft.sidebar-left
+      .sidebar-header
+        a(href="/")
+          .sidebar-brand
+            img(
+              alt="TUGON Logo" 
+              src="/images/logo.png"
+              )
+            .sidebar-brand-text
+              h3 TUGON
+              p Municipal Complaint System
+        #closeLeftSidebar.sidebar-close
+          i(data-lucide="x")
+      nav.sidebar-nav
+        ul
+          li
+            a.active(href="/")
+              i(data-lucide="house")
+              | Home
+            
+          if userRole === 'ADMIN' || userRole === 'STAFF'
+            li.nav-item
+              a.nav-link(href="/admin/reports") Reports
+                  i(data-lucide="chart-area")
+          
+          li
+            a(href="/complaints/new")
+              i(data-lucide="file-text")
+              | File Complaint
+          if user && (user.role === "ADMIN" || user.role === "SUPERADMIN")
+            li
+              a(href="/dashboard")
+                i(data-lucide="files")
+                | All Complaints
+          //- else
+          //-   li
+          //-     a(href="#")
+          //-       i(data-lucide="search")
+          //-       | Track Complaint
+          li
+            a(href="/complaints/my")
+              i(data-lucide="clock")
+              | My Complaints
+          li
+            a(href="#")
+              i(data-lucide="info")
+              | About
+          li
+            a(href="#")
+              i(data-lucide="circle-question-mark")
+              | Help
+          li
+            a(href="#")
+              i(data-lucide="settings")
+              | Settings
+      .sidebar-footer
+        p © 2026 TUGON - All complaints are public record
+    
+    // RIGHT SIDEBAR (Notifications)
+    aside#sidebarRight.sidebar-right
+      .notif-header
+        h3 Notifications
+        #closeRightSidebar.notif-close
+          i(data-lucide="x")
+
+      .notif-list#notifList
+        // JS will inject notifications here
+    
+    //- aside#sidebarRight.sidebar-right
+      .notif-header
+        h3 Notifications
+        #closeRightSidebar.notif-close
+          i(data-lucide="x")
+      .notif-list
+        .notif-item.unread
+          .notif-icon
+            i(data-lucide="circle-check-big")
+          .notif-content
+            h4 Complaint Resolved
+            p Your complaint about the pothole on Main Street has been resolved.
+            span.notif-time 2 hours ago
+        .notif-item.unread
+          .notif-icon
+            i(data-lucide="info")
+          .notif-content
+            h4 New Update
+            p There's an update on your water supply complaint.
+            span.notif-time 5 hours ago
+        .notif-item
+          .notif-icon
+            i(data-lucide="user-plus")
+          .notif-content
+            h4 Account Verified
+            p Your account has been successfully verified.
+            span.notif-time 1 day ago
+        .notif-item
+          .notif-icon
+            i(data-lucide="bell")
+          .notif-content
+            h4 Welcome to TUGON
+            p Thank you for registering with our complaint redress system.
+            span.notif-time 3 days ago
+            
+    // STICKY HEADER
+    nav#header.header
+      a(href="/")
+        .header-brand
+          img(
+            src="/images/logo.png" 
+            alt="TUGON Logo"
+            )
+          .brand-text
+            h1 TUGON
+            p Municipal Complaint Redress System
+      .header-actions
+        #openNotifSidebar.header-notif
+          i(data-lucide="bell")
+          span#notifBadge.badge 0
+        
+        
+        if user
+          // LOGGED IN STATE (Profile Dropdown)
+          #profileDropdown.profile-dropdown
+            button.profile-btn(type="button")
+              //- .profile-avatar JD
+              .profile-avatar= user.name[0] + user.name[1]
+              .profile-info
+                //- span.profile-name John Doe
+                //- span.profile-role Administrator
+                span.profile-name= user.name
+                span.profile-role= user.role
+              i.dropdown-arrow(data-lucide="chevron-down")
+            .dropdown-menu
+              .dropdown-header
+                .avatar= user.name[0] + user.name[1]
+                //- .name John Doe
+                .name= user.name
+                //- .email john.doe@tugon.gov.ph
+                .email= user.email
+              .dropdown-items
+                //- a.action-btn.delete(href=`/complaints/${complaint.id}/delete` data-name=`${complaint.referenceNo}`) Delete
+
+                //- a.dropdown-item.action-btn.edit-profile(href="#" data-user=`${JSON.stringify(user)}`)
+                a.dropdown-item.action-btn.edit-profile(href=`/user/edit/${user.id}` data-user=`${JSON.stringify(user)}`)
+                  i(data-lucide="user")
+                  | My Profile
+                a.dropdown-item(href="/settings")
+                  i(data-lucide="settings")
+                  | Settings
+                a.dropdown-item(href="/notifications")
+                  i(data-lucide="bell")
+                  | Notifications
+                .dropdown-divider
+                a.dropdown-item(href="/help")
+                  i(data-lucide="help-circle")
+                  | Help Center
+              .dropdown-footer
+                a.dropdown-item(href="/auth/logout")
+                  i(data-lucide="log-out")
+                  | Log Out
+        else
+          // LOGGED OUT STATE
+          a.header-login(href="/auth/login")
+            i(data-lucide="log-in")
+            | LOG IN
+        #openMenuSidebar.header-menu
+          span
+          span
+          span
+        //- script(src="/js/lucide.js")
+      //- block content

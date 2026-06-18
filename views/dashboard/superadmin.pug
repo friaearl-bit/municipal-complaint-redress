@@ -1,0 +1,62 @@
+//- extends ../layout
+
+block content
+  include ../layout
+  
+  h1 Superadmin Dashboard
+  p Welcome, #{user.fullname || user.name} (System Administrator)
+
+  .stats-grid
+    .stat-card
+      h3 Total Users
+      p= stats.users
+    .stat-card
+      h3 Total Complaints
+      p= stats.complaints
+    .stat-card
+      h3 Pending
+      p= stats.pending
+    .stat-card
+      h3 In Progress
+      p= stats.inProgress
+    .stat-card
+      h3 Resolved
+      p= stats.resolved
+
+  .admin-actions
+    a.button(href="/admin/users") Manage Users
+    a.button(href="/admin/departments") Manage Departments
+    a.button(href="/admin/complaints") Manage All Complaints
+
+  h2 Recent Complaints
+  table.complaints-table
+    thead
+      tr
+        th ID
+        th Reference #
+        th Title
+        th Category
+        th Priority
+        th Status
+        th Complainant
+        th Assigned To
+        th Department
+        th Created
+        th Actions
+    tbody
+      each complaint in complaints
+        tr
+          td= complaint.id
+          td= complaint.referenceNo
+          td= complaint.title
+          td= complaint.category
+          td= complaint.priority
+          td= complaint.status
+          td= complaint.complainant?.fullname || complaint.complainant?.name || 'N/A'
+          td= complaint.assignedTo?.fullname || complaint.assignedTo?.name || 'Unassigned'
+          td= complaint.assignedDepartment?.name || 'Unassigned'
+          td= new Date(complaint.createdAt).toLocaleString()
+          td
+            a(href="/complaints/" + complaint.id) View
+            a(href="/admin/assign?complaintId=" + complaint.id) Assign
+            a(href="/admin/edit?complaintId=" + complaint.id) Edit
