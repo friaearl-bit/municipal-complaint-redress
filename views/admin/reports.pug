@@ -1,0 +1,100 @@
+//- extends ../layout
+
+block content
+  include ../layout
+  
+  link(href="/css/reports.css" rel="stylesheet")
+
+  .reports-container
+
+    .reports-header
+      h1 Analytics Dashboard
+      p Track system performance and complaint trends
+
+    // SUMMARY
+    .summary-grid
+
+      .summary-card
+        i.summary-icon(data-lucide="file-text")
+        .summary-details
+          h3 Total Complaints
+          .summary-value 0
+
+      .summary-card
+        i.summary-icon(data-lucide="clock")
+        .summary-details
+          h3 Pending
+          .summary-value 0
+
+      .summary-card
+        i.summary-icon(data-lucide="check-circle")
+        .summary-details
+          h3 Resolved
+          .summary-value 0
+
+      .summary-card
+        i.summary-icon(data-lucide="target")
+        .summary-details
+          h3 Resolution Rate
+          .summary-value 0%
+
+      .summary-card
+        i.summary-icon(data-lucide="bar-chart-3")
+        .summary-details
+          h3 Avg Time
+          .summary-value 0h
+
+      .summary-card
+        i.summary-icon(data-lucide="users")
+        .summary-details
+          h3 Departments
+          .summary-value 0
+
+    // CHARTS
+    .dashboard-grid
+
+      .card
+        h5 Complaints by Status
+        .chart-container
+          canvas#statusChart
+
+      .card
+        h5 Complaints by Priority
+        .chart-container
+          canvas#priorityChart
+
+      .card
+        h5 Department Workload
+        .chart-container
+          canvas#departmentChart
+
+      .card
+        h5 Category Distribution
+        .chart-container
+          canvas#categoryChart
+
+      .card.full
+        h5 Monthly Trend
+        .chart-container
+          canvas#monthlyChart
+
+      .card
+        h5 Staff Performance
+        .chart-container
+          canvas#staffChart
+
+      .card
+        h5 Resolution Metrics
+        .metrics
+          .metric
+            .value 0h
+            .label Average
+          .metric
+            .value 0h
+            .label Fastest
+          .metric
+            .value 0h
+            .label Slowest
+          .metric
+            .value 0
+            .label Total
